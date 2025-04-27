@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Delicious - Food Blog Template | Blog Post</title>
+    <link rel="icon" href="../../static/recettes/img/core-img/favicon.ico">
+    <link rel="stylesheet" href="../../static/recettes/style.css">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="../../static/recettes/img/core-img/salad.png" alt="">
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <div class="delicious-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <nav class="classy-navbar justify-content-between" id="deliciousNav">
+                        <a class="nav-brand" href="../"><img src="../../static/recettes/img/core-img/logo.png" alt=""></a>
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+                        <div class="classy-menu">
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li class="active"><a href="../blog">Blog</a></li>
+                                    <li><a href="../receipe">Receipies</a></li>
+                                    <li><a href="../element">Elements</a></li>
+                                    <li><a href="../contact">Contact</a></li>
+                                </ul>
+                                <div class="search-btn">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Blog Area Start ##### -->
+    <div class="blog-area section-padding-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="blog-posts-area">
+                        {% for post in posts %}
+                        <div class="single-blog-area mb-80">
+                            <div class="blog-thumbnail">
+                                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                <div class="post-date">
+                                    <a href="#"><span>{{ post.date_posted.day }}</span>{{ post.date_posted|date:"F" }} <br> {{ post.date_posted.year }}</a>
+                                </div>
+                            </div>
+                            <div class="blog-content">
+                                <a href="#" class="post-title">{{ post.title }}</a>
+                                <div class="meta-data">by <a href="#">{{ post.author }}</a> in <a href="#">{{ post.category }}</a></div>
+                                <p>{{ post.content|truncatewords:40 }}</p>
+                                <a href="#" class="btn delicious-btn mt-30">Read More</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item active"><a class="page-link" href="#">01.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">02.</a></li>
+                            <li class="page-item"><a class="page-link" href="#">03.</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="blog-sidebar-area">
+                        <div class="single-widget mb-80">
+                            <h6>Archive</h6>
+                            <ul class="list">
+                                <li><a href="#">March 2018</a></li>
+                                <li><a href="#">February 2018</a></li>
+                                <li><a href="#">January 2018</a></li>
+                            </ul>
+                        </div>
+                        <div class="single-widget mb-80">
+                            <h6>Categories</h6>
+                            <ul class="list">
+                                <li><a href="#">Restaurants</a></li>
+                                <li><a href="#">Food & Drinks</a></li>
+                                <li><a href="#">Vegans</a></li>
+                                <li><a href="#">Events & Lifestyle</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Blog Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    {% include './commun/footer.html' %}
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="../../static/recettes/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../../static/recettes/js/bootstrap/bootstrap.min.js"></script>
+    <!-- Active js -->
+    <script src="../../static/recettes/js/active.js"></script>
+</body>
+</html>

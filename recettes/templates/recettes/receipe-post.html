@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Delicious - Food Blog Template | Recipe Post</title>
+    <link rel="icon" href="../../static/recettes/img/core-img/favicon.ico">
+    <link rel="stylesheet" href="../../static/recettes/style.css">
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+        <img src="../../static/recettes/img/core-img/salad.png" alt="">
+    </div>
+
+    <!-- Search Wrapper -->
+    <div class="search-wrapper">
+        <div class="close-btn"><i class="fa fa-times" aria-hidden="true"></i></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#" method="post">
+                        <input type="search" name="search" placeholder="Type any keywords...">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <div class="delicious-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <nav class="classy-navbar justify-content-between" id="deliciousNav">
+                        <a class="nav-brand" href="../"><img src="../../static/recettes/img/core-img/logo.png" alt=""></a>
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+                        <div class="classy-menu">
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><a href="../blog">Blog</a></li>
+                                    <li class="active"><a href="../">Recipes</a></li>
+                                    <li><a href="../element">Elements</a></li>
+                                    <li><a href="../contact">Contact</a></li>
+                                </ul>
+                                <div class="search-btn">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../static/recettes/img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>Recipes</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="receipe-post-area section-padding-80">
+        <div class="container">
+            {% for recipe in recipes %}
+            <!-- Single Recipe -->
+            <div class="row mb-5">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel mb-4">
+                        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8">
+                    <div class="receipe-headline my-5">
+                        <span>{{ recipe.created_at|date:"F j, Y" }}</span>
+                        <h2>{{ recipe.title }}</h2>
+                        <div class="receipe-duration">
+                            <h6>Prep: 15 mins</h6>
+                            <h6>Cook: 30 mins</h6>
+                            <h6>Yields: 4 Servings</h6>
+                        </div>
+                    </div>
+
+                    <div class="single-preparation-step d-flex">
+                        <h4>01.</h4>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+
+                    <div class="single-preparation-step d-flex">
+                        <h4>02.</h4>
+                        <p>{{ recipe.instructions }}</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="ingredients">
+                        <h4>Ingredients</h4>
+                        {% for ingredient in recipe.ingredients_list %}
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="ingredient{{ forloop.counter }}">
+                            <label class="custom-control-label" for="ingredient{{ forloop.counter }}">{{ ingredient }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    {% include './commun/footer.html' %}
+    <!-- Scripts -->
+    <script src="../../static/recettes/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="../../static/recettes/js/bootstrap/popper.min.js"></script>
+    <script src="../../static/recettes/js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../static/recettes/js/plugins/plugins.js"></script>
+    <script src="../../static/recettes/js/active.js"></script>
+
+</body>
+</html>

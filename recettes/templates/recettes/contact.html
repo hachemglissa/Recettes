@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="icon" href="{% static 'recettes/img/core-img/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'recettes/style.css' %}">
+</head>
+<body>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <div class="delicious-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <nav class="classy-navbar justify-content-between" id="deliciousNav">
+                        <a class="nav-brand" href="../"><img src="../../static/recettes/img/core-img/logo.png" alt=""></a>
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+                        <div class="classy-menu">
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="../">Home</a></li>
+                                    <li><a href="../blog">Blog</a></li>
+                                    <li><a href="../receipe">Recipes</a></li>
+                                    <li><a href="../element">Elements</a></li>
+                                    <li class="active"><a href="../contact">Contact</a></li>
+                                </ul>
+                                <div class="search-btn">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<!-- Contact Area -->
+{% load static %}
+{% with bg_url='recettes/img/bg-img/breadcumb4.jpg' %}
+<div class="breadcumb-area bg-img bg-overlay" style="background-image: url('{% static bg_url %}');">
+{% endwith %}
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="breadcumb-text text-center">
+                    <h2>Contact</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Form -->
+<div class="contact-area section-padding-80">
+    <div class="container">
+        <div class="section-heading">
+            <h3>Get In Touch</h3>
+        </div>
+
+        <form action="{% url 'contact' %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                </div>
+                <div class="col-12">
+                    <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                </div>
+                <div class="col-12">
+                    <textarea name="message" class="form-control" cols="30" rows="10" placeholder="Message" required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                    <button class="btn delicious-btn mt-30" type="submit">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Messages Table -->
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Messages reçus</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Sujet</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.subject }}</td>
+                    <td>{{ contact.message }}</td>
+                    <td>{{ contact.created_at|date:"d/m/Y H:i" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Aucun message pour le moment.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Footer -->
+{% include './commun/footer.html' %}
+
+<!-- Scripts -->
+<script src="{% static 'recettes/js/jquery/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'recettes/js/bootstrap/popper.min.js' %}"></script>
+<script src="{% static 'recettes/js/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'recettes/js/plugins/plugins.js' %}"></script>
+<script src="{% static 'recettes/js/active.js' %}"></script>
+</body>
+</html>
